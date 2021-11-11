@@ -12,7 +12,7 @@ captured=$(docker run --network container:frontend \
   --retry 10 \
   --retry-connrefused \
   -I \
-  http://localhost:10000 | grep 'HTTP/1.1 200 OK')
+  http://localhost:10000 | grep 'HTTP/1.1 200 OK' | xargs)
 
 echo ${captured}
 
