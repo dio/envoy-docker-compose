@@ -2,6 +2,7 @@ version: "3"
 
 services:
   frontend:
+    container_name: frontend
     image: docker.io/istio/proxyv2:1.11.3
     entrypoint:
       - /usr/local/bin/envoy
