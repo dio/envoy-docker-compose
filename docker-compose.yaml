@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  frontend:
+    image: docker.io/istio/proxyv2:1.11.3
+    entrypoint:
+      - /usr/local/bin/envoy
+      - -c
+      - /etc/envoy/envoy.yaml
+    volumes:
+      - ./config/frontend/bootstrap.yaml:/etc/envoy/envoy.yaml
+      - ./config/frontend:/var/lib/envoy
+    ports:
+      - "10000:10000"
+  backend:
+    image: docker.io/istio/proxyv2:1.11.3
+    entrypoint:
+      - /usr/local/bin/envoy
+      - -c
+      - /etc/envoy/envoy.yaml
+      - -l
+      - debug
+    volumes:
+      - ./config/backend/bootstrap.yaml:/etc/envoy/envoy.yaml
+      - ./config/backend:/var/lib/envoy
